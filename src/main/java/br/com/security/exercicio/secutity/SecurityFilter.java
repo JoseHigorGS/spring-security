@@ -30,7 +30,6 @@ public class SecurityFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         System.out.println("Sua requisição passou pelo filtro");
 
-
         var token = this.recoverToken(request);
         System.out.println(token);
         if (token != null) {
@@ -44,9 +43,6 @@ public class SecurityFilter extends OncePerRequestFilter {
             context.setAuthentication(authentication);
             SecurityContextHolder.setContext(context);
 
-
-//            var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-//            SecurityContextHolder.getContext().setAuthentication(authentication);
         }
         filterChain.doFilter(request, response);
 
